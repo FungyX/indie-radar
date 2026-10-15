@@ -110,7 +110,12 @@ def reddit_section(state, settings, today, now_utc, errors):
     candidates = [p for p in posts if reddit.mentions_stats(p)]
     log(f"{len(posts)} new posts, {len(candidates)} mention wishlists")
 
-    infos = analyze.analyze(candidates, settings, log=log)
+    def analyze_log(msg: str) -> None:
+        log(msg)
+        if msg.startswith("!"):  # problems also go into the report so you see them without the logs
+            errors.append(msg.lstrip("! "))
+
+    infos = analyze.analyze(candidates, settings, log=analyze_log)
     shared = [p for p in candidates if (infos.get(p["id"]) or {}).get("shares_stats")]
     passing = [p for p in shared
                if analyze.passes_threshold(infos[p["id"]], settings)
@@ -227,7 +232,7 @@ def public_report(report: dict, public_rows: list[dict]) -> dict:
 
 # ---------------------------------------------------------------- main
 
-def run(force: bool) -> bool:
+def run(force: bool, rescan: bool = False) -> bool:
     settings = config.settings()
     tz = ZoneInfo(settings["timezone"])
     now_utc = datetime.now(timezone.utc)
@@ -237,6 +242,9 @@ def run(force: bool) -> bool:
 
     if not force and not should_run(now_local, state, settings):
         return False
+    if rescan:  # process today's posts and games again, e.g. after fixing a problem
+        state["seen_posts"] = {k: v for k, v in state["seen_posts"].items() if v != today.isoformat()}
+        state["reported_games"] = {k: v for k, v in state["reported_games"].items() if v != today.isoformat()}
 
     for d in (config.SITE_DIR, config.OUT_DIR):
         if d.exists():
@@ -330,8 +338,9 @@ def build_site(rows: list[dict], now_local: datetime) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--force", action="store_true", help="run now even if outside the time window")
+    parser.add_argument("--rescan", action="store_true", help="forget today's seen posts and process them again")
     args = parser.parse_args()
-    ran = run(args.force)
+    ran = run(args.force, args.rescan)
     set_output("ran", "true" if ran else "false")
 
 

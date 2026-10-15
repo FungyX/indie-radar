@@ -12,6 +12,10 @@ on:
         description: "Run now even if today's report was already sent"
         type: boolean
         default: true
+      rescan:
+        description: "Process today's posts again (if an earlier run today went wrong)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -47,7 +51,7 @@ jobs:
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           GAMALYTIC_API_KEY: ${{ secrets.GAMALYTIC_API_KEY }}
           DATA_KEY: ${{ secrets.DATA_KEY }}
-        run: python -m radar.main ${{ (github.event_name == 'workflow_dispatch' && inputs.force) && '--force' || '' }}
+        run: python -m radar.main ${{ (github.event_name == 'workflow_dispatch' && inputs.force) && '--force' || '' }} ${{ (github.event_name == 'workflow_dispatch' && inputs.rescan) && '--rescan' || '' }}
 
       - name: Save data
         if: steps.build.outputs.ran == 'true'

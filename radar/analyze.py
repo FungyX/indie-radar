@@ -57,8 +57,13 @@ def _ask_claude(posts: list[dict], model: str) -> list[dict]:
         input=prompt, capture_output=True, text=True, encoding="utf-8", timeout=900,
     )
     if proc.returncode != 0:
-        raise RuntimeError(f"claude exited {proc.returncode}: {proc.stderr[-2000:]}")
-    envelope = json.loads(proc.stdout)
+        raise RuntimeError(f"claude exited {proc.returncode}: {(proc.stderr or proc.stdout)[-500:].strip()}")
+    try:
+        envelope = json.loads(proc.stdout)
+    except json.JSONDecodeError:
+        raise RuntimeError(f"unexpected claude output: {proc.stdout[:300]!r}")
+    if isinstance(envelope, list):  # some versions print every message; the result is the last one
+        envelope = next((m for m in reversed(envelope) if isinstance(m, dict) and m.get("type") == "result"), {})
     if envelope.get("is_error"):
         raise RuntimeError(f"claude error: {envelope.get('result')}")
     return _extract_json_array(envelope.get("result", ""))
