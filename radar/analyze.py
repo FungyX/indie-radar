@@ -5,6 +5,7 @@ GitHub Actions authenticates the `claude` CLI with CLAUDE_CODE_OAUTH_TOKEN, made
 still runs (useful for local testing), but it is much less accurate.
 """
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -60,20 +61,25 @@ def _ask_claude(posts: list[dict], model: str) -> list[dict]:
         "text": p["text"][:5000],
     } for p in posts]
     prompt = PROMPT + json.dumps(payload, ensure_ascii=False, indent=1)
+    env = dict(os.environ)
+    if env.get("CLAUDE_CODE_OAUTH_TOKEN"):
+        # A token pasted from a wrapped terminal line often carries line breaks or spaces.
+        env["CLAUDE_CODE_OAUTH_TOKEN"] = re.sub(r"\s+", "", env["CLAUDE_CODE_OAUTH_TOKEN"])
     proc = subprocess.run(
         [_claude_cli(), "-p", "--model", model, "--output-format", "json"],
-        input=prompt, capture_output=True, text=True, encoding="utf-8", timeout=900,
+        input=prompt, capture_output=True, text=True, encoding="utf-8", timeout=900, env=env,
     )
-    if proc.returncode != 0:
-        raise RuntimeError(f"claude exited {proc.returncode}: {(proc.stderr or proc.stdout)[-500:].strip()}")
     try:
         envelope = json.loads(proc.stdout)
     except json.JSONDecodeError:
-        raise RuntimeError(f"unexpected claude output: {proc.stdout[:300]!r}")
+        detail = (proc.stderr or proc.stdout)[-300:].strip()
+        raise RuntimeError(f"claude exited {proc.returncode}: {detail}")
     if isinstance(envelope, list):  # some versions print every message; the result is the last one
         envelope = next((m for m in reversed(envelope) if isinstance(m, dict) and m.get("type") == "result"), {})
-    if envelope.get("is_error"):
-        raise RuntimeError(f"claude error: {envelope.get('result')}")
+    if envelope.get("is_error") or proc.returncode != 0:
+        status = envelope.get("api_error_status")
+        hint = " (check the CLAUDE_CODE_OAUTH_TOKEN secret)" if status == 401 else ""
+        raise RuntimeError(f"{envelope.get('result') or 'claude failed'}{hint}")
     return _extract_json_array(envelope.get("result", ""))
 
 
@@ -110,14 +116,19 @@ def analyze(posts: list[dict], settings: dict, log=print) -> dict[str, dict]:
         return {p["id"]: _fallback(p) for p in posts}
     size = settings.get("claude_batch_size", 12)
     model = settings.get("claude_model", "sonnet")
+    failures = 0
     for i in range(0, len(posts), size):
         batch = posts[i:i + size]
         try:
+            if failures >= 2:  # Claude keeps failing (e.g. bad token): don't burn time retrying
+                raise RuntimeError("skipped after earlier failures")
             for item in _ask_claude(batch, model):
                 if isinstance(item, dict) and item.get("id"):
                     results[item["id"]] = item
         except Exception as exc:
-            log(f"! Claude failed on a batch ({exc}); using the regex fallback for it")
+            failures += 1
+            if failures <= 2:
+                log(f"! Claude couldn't read posts: {exc}. Used the simple keyword parser instead.")
             for p in batch:
                 results[p["id"]] = _fallback(p)
     return results
