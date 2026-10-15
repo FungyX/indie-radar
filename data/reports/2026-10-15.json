@@ -1,0 +1,139 @@
+{
+ "date": "2026-10-15",
+ "date_text": "Thursday, 15 Oct 2026",
+ "stats": {
+  "scanned": 606,
+  "mentions": 52,
+  "shared": 6,
+  "passed": 2
+ },
+ "cards": [
+  {
+   "post": {
+    "id": "t3_1x5wogj",
+    "subreddit": "gamemarketing",
+    "title": "OMG Littermates passed 1000 Wishlists!",
+    "author": "Alt10101",
+    "url": "https://www.reddit.com/r/gamemarketing/comments/1x5wogj/omg_littermates_passed_1000_wishlists/",
+    "published": "2026-10-14 17:00:11+00:00",
+    "text": "Huge milestone for our small little self funded indie team. We're super excited to have passed 1k wishlists just ahead of next fest. Fingers crossed next fest goes well! https://store.steampowered.com/app/4735880/Littermates/",
+    "steam_appids": [
+     4735880
+    ],
+    "age": "23h ago"
+   },
+   "info": {
+    "id": "t3_1x5wogj",
+    "shares_stats": true,
+    "game_name": null,
+    "wishlists": 1000,
+    "period_days": null,
+    "period_text": null,
+    "has_steam_page": true,
+    "strategies": [],
+    "demo": null,
+    "interest_score": 50,
+    "summary": "OMG Littermates passed 1000 Wishlists!",
+    "_appid": 4735880
+   },
+   "appid": 4735880,
+   "score": 50,
+   "also_in": [],
+   "bars": [],
+   "game": {
+    "appid": 4735880,
+    "name": "Littermates",
+    "url": "https://store.steampowered.com/app/4735880/",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4735880/b2993d1cafb4f86cc495807b7b095ec76baddac4/header.jpg?t=1791439167",
+    "developers": [
+     "Blue Base Games"
+    ],
+    "short_description": "Grab your mates, steal some litter, and help the denizens of Raccoon-opolis as the newest member of The Duke's crew. Physics Mayhem with up to 8 mates! Drive your stolen Garbage Truck around neighbourhoods, racing to stay ahead of the sunrise as you try to collect everything that isn't nailed down.",
+    "coming_soon": true,
+    "release_text": "To be announced",
+    "genres": [
+     "Action",
+     "Adventure",
+     "Indie",
+     "Simulation"
+    ],
+    "gamalytic_url": "https://gamalytic.com/game/4735880",
+    "followers": null,
+    "est_wishlists": null,
+    "tags": [
+     "Action",
+     "Adventure",
+     "Indie",
+     "Simulation"
+    ],
+    "demo": {
+     "appid": 5187590,
+     "date_text": "Oct 7, 2026",
+     "date": "2026-10-07",
+     "url": "https://store.steampowered.com/app/5187590/",
+     "days_live": 8
+    },
+    "trailer": {
+     "name": "Littlemates Announcement Trailer",
+     "count": 1,
+     "seconds": 53.4,
+     "length": "0:53"
+    },
+    "youtube": {
+     "best": {
+      "id": "vd7oqgnf4ac",
+      "url": "https://www.youtube.com/watch?v=vd7oqgnf4ac",
+      "title": "LITTERMATES trailer",
+      "channel": "Alamo Drafthouse",
+      "views": 2637,
+      "length": "1:14",
+      "seconds": 74,
+      "published": "4w ago"
+     },
+     "count": 7,
+     "total_views": 4051,
+     "length": "1:14"
+    }
+   },
+   "follow_url": "https://github.com/FungyX/indie-radar/issues/new?title=follow%204735880%20Littermates&body=Just%20press%20Submit.%20A%20workflow%20updates%20config/followed_games.txt%20and%20closes%20this%20issue."
+  },
+  {
+   "post": {
+    "id": "t3_1x6l31n",
+    "subreddit": "SoloDevelopment",
+    "title": "With wishlists, just like with a YouTube channel, you end up raising your own expectations and setting the bar too high",
+    "author": "Suvitruf",
+    "url": "https://www.reddit.com/r/SoloDevelopment/comments/1x6l31n/with_wishlists_just_like_with_a_youtube_channel/",
+    "published": "2026-10-15 13:04:20+00:00",
+    "text": "You see other people hitting 100K wishlists or 100K subscribers on YouTube.\n But rationally, you know that 1,000 subscribers or wishlists is already a hell of a lot!\n Sure, some are friends/loyal supporters, but that's still hundreds of people who have a real interest in what you're doing!",
+    "steam_appids": [],
+    "age": "3h ago"
+   },
+   "info": {
+    "id": "t3_1x6l31n",
+    "shares_stats": true,
+    "game_name": null,
+    "wishlists": 100000,
+    "period_days": null,
+    "period_text": null,
+    "has_steam_page": null,
+    "strategies": [],
+    "demo": null,
+    "interest_score": 50,
+    "summary": "With wishlists, just like with a YouTube channel, you end up raising your own expectations and setting the bar too high",
+    "_appid": null
+   },
+   "appid": null,
+   "score": 50,
+   "also_in": [],
+   "bars": [],
+   "game": null,
+   "follow_url": null
+  }
+ ],
+ "compact": [],
+ "weekly": null,
+ "errors": [],
+ "ratio": 10,
+ "dashboard_url": "https://FungyX.github.io/indie-radar/"
+}
