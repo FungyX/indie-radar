@@ -1,0 +1,130 @@
+{% macro capsule(game, fallback_name) -%}
+  {%- if game and game.header -%}
+    <img class="capsule" src="{{ game.header }}" alt="{{ game.name }}" width="184">
+  {%- else -%}
+    <div class="capsule-empty">{{ (game.name if game else fallback_name or '?')|upper|truncate(18, True, '…') }}</div>
+  {%- endif -%}
+{%- endmacro %}
+
+{% macro score_badge(score) -%}
+  <span class="score{% if score < 75 %} mid{% endif %}">Score {{ score }}</span>
+{%- endmacro %}
+
+{# `public` comes from the render context: public pages never show Gamalytic numbers. #}
+{% macro wishlist_row(game) -%}
+  {%- set wl, src = game|best_wishlists(public) -%}
+  {%- set gama = (game.gamalytic or {}) if not public else {} -%}
+  {%- if wl -%}
+  <tr><td class="k">Wishlists ({{ src }})</td><td class="v">{{ '' if src == 'Gamalytic' else '~' }}{{ wl|num }}{% if gama.daily_gain %} · +{{ gama.daily_gain|round|int }}/day{% endif %}</td></tr>
+  {%- endif -%}
+  {%- if gama.top_rank -%}<tr><td class="k">Steam top wishlist rank</td><td class="v">#{{ gama.top_rank|num }}</td></tr>{%- endif -%}
+  {%- if gama.month1_sales -%}<tr><td class="k">Predicted month-1 sales</td><td class="v">{{ gama.month1_sales|num }}</td></tr>{%- endif -%}
+{%- endmacro %}
+
+{% macro daily_card(item) %}
+{% set info = item.info %}{% set game = item.game %}{% set post = item.post %}
+<div class="card">
+  <table width="100%" cellpadding="0" cellspacing="0"><tr>
+    <td style="width:184px;padding:18px 0 0 20px;vertical-align:top;">{{ capsule(game, info.game_name) }}</td>
+    <td style="padding:18px 20px 0 16px;vertical-align:top;">
+      {{ score_badge(item.score) }}
+      <div class="title" style="margin-top:8px;">{{ game.name if game else (info.game_name or post.title) }}</div>
+      <div class="muted">r/{{ post.subreddit }} · u/{{ post.author }} · {{ post.age }}</div>
+      {% if item.also_in %}<div class="muted">Also posted in {{ item.also_in|join(', ') }}</div>{% endif %}
+    </td>
+  </tr></table>
+  <div class="card-pad">
+    <div class="quote">"{{ post.title }}"</div>
+    {% if info.summary %}<div class="summary">{{ info.summary }}</div>{% endif %}
+
+    <div class="label" style="margin-top:18px;">What the dev shared</div>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+      <tr>
+        <td><div class="stat-num">{{ info.wishlists|num }}</div><div class="stat-lbl">Wishlists claimed</div></td>
+        <td><div class="stat-num">{{ info.period_text or (info.period_days ~ ' days' if info.period_days else '—') }}</div><div class="stat-lbl">Period</div></td>
+        <td><div class="stat-num">{{ 'Yes' if (info.has_steam_page or game) else ('No' if info.has_steam_page == false else '?') }}</div><div class="stat-lbl">Steam page</div></td>
+      </tr>
+    </table>
+    {% if item.bars %}
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-top:14px;font-size:12px;">
+      {% for b in item.bars %}
+      <tr>
+        <td style="width:150px;padding:4px 8px 4px 0;">{{ b.name }}</td>
+        <td>{% if b.pct %}<div class="bar-bg"><div class="bar" style="width:{{ b.pct }}%;"></div></div>{% else %}<span class="muted">{{ b.note or '' }}</span>{% endif %}</td>
+        <td style="width:64px;text-align:right;color:#fff;">{{ ('+' ~ (b.wishlists|num)) if b.wishlists else '' }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% endif %}
+
+    {% if game %}
+    <div class="label" style="margin-top:20px;">Checked on Steam · Gamalytic · YouTube</div>
+    <table width="100%" cellpadding="0" cellspacing="0" class="kv" style="margin-top:6px;">
+      {{ wishlist_row(game) }}
+      <tr><td class="k">Steam followers</td><td class="v">{{ game.followers|num }}</td></tr>
+      <tr><td class="k">Demo</td><td class="v">
+        {%- if game.demo -%}Yes{% if game.demo.date_text %} · live since {{ game.demo.date_text }}{% if game.demo.days_live is not none %} ({{ game.demo.days_live }} days){% endif %}{% endif %}
+        {%- else -%}No{%- endif -%}</td></tr>
+      {% if info.demo %}<tr><td class="k">Dev on the demo</td><td class="v">{{ info.demo }}</td></tr>{% endif %}
+      <tr><td class="k">Steam trailer</td><td class="v">
+        {%- if game.trailer -%}{{ game.trailer.length or 'Yes' }}{% if game.trailer.count > 1 %} · {{ game.trailer.count }} videos on page{% endif %}{%- else -%}None{%- endif -%}</td></tr>
+      <tr><td class="k">YouTube</td><td class="v">
+        {%- if game.youtube -%}<a href="{{ game.youtube.best.url }}">{{ game.youtube.best.views|num }} views</a>{% if game.youtube.length %} · {{ game.youtube.length }}{% endif %}{% if game.youtube.count > 1 %}<br><span class="muted">{{ game.youtube.total_views|num }} views across {{ game.youtube.count }} trailers</span>{% endif %}
+        {%- else -%}Not found{%- endif -%}</td></tr>
+      <tr><td class="k">Release</td><td class="v">{{ game.release_text }}</td></tr>
+    </table>
+    {% if game.tags %}<div style="margin-top:12px;">{% for t in game.tags %}<span class="pill">{{ t }}</span>{% endfor %}</div>{% endif %}
+    {% else %}
+    <div class="muted" style="margin-top:16px;">Couldn't find this game on Steam.</div>
+    {% endif %}
+
+    <div style="margin-top:16px;">
+      {% if game %}<a class="btn" href="{{ game.url }}">View on Steam</a>{% endif %}
+      <a class="btn ghost" href="{{ post.url }}">Reddit post</a>
+      {% if game %}<a class="btn ghost" href="{{ game.gamalytic_url }}">Gamalytic</a>{% endif %}
+      {% if item.follow_url %}<a class="btn ghost" href="{{ item.follow_url }}">+ Follow</a>{% endif %}
+    </div>
+  </div>
+</div>
+{% endmacro %}
+
+{% macro compact_card(item) %}
+{% set info = item.info %}{% set game = item.game %}{% set post = item.post %}
+<div class="card">
+  <table width="100%" cellpadding="0" cellspacing="0"><tr>
+    <td style="width:184px;padding:18px 0 18px 20px;vertical-align:top;">{{ capsule(game, info.game_name) }}</td>
+    <td style="padding:18px 20px 18px 16px;vertical-align:top;">
+      {{ score_badge(item.score) }}
+      <div class="title" style="margin-top:8px;">{{ game.name if game else (info.game_name or post.title) }}</div>
+      <div class="muted">r/{{ post.subreddit }} · {{ post.age }}{% if item.also_in %} · also in {{ item.also_in|join(', ') }}{% endif %}</div>
+      <div style="font-size:13px;margin-top:8px;">{{ info.summary or post.title }}</div>
+      <div style="margin-top:8px;font-size:13px;">
+        {% if game %}<a href="{{ game.url }}">Steam</a> · {% endif %}<a href="{{ post.url }}">Reddit</a>
+        {% if game %} · <a href="{{ game.gamalytic_url }}">Gamalytic</a>{% endif %}
+        {% if item.follow_url %} · <a href="{{ item.follow_url }}">+ Follow</a>{% endif %}
+      </div>
+    </td>
+  </tr></table>
+</div>
+{% endmacro %}
+
+{% macro followed_card(row) %}
+<div class="card"><div class="card-pad">
+  <table width="100%" cellpadding="0" cellspacing="0"><tr>
+    <td style="width:184px;vertical-align:top;">{{ capsule(row.game, row.game.name) }}</td>
+    <td style="padding-left:16px;vertical-align:top;">
+      <a class="title" href="{{ row.game.url }}" style="color:#fff;">{{ row.game.name }}</a>
+      <table cellpadding="0" cellspacing="0" style="margin-top:8px;"><tr>
+        <td style="padding-right:28px;"><div class="stat-num">{{ row.value|num }}</div><div class="stat-lbl">{{ row.value_label }}</div></td>
+        <td style="padding-right:28px;">
+          {% if row.gain is not none %}<div class="stat-num {{ 'up' if row.gain >= 0 else 'down' }}">{{ '~' if row.gain_note }}{{ row.gain|signed }}</div>{% else %}<div class="stat-num">—</div>{% endif %}
+          <div class="stat-lbl">vs last week{% if row.gain_note %} ({{ row.gain_note }}){% endif %}</div></td>
+        {% if row.show_followers %}<td><div class="stat-num" style="font-size:16px;">{{ row.followers|num }}</div><div class="stat-lbl">Followers</div></td>{% endif %}
+      </tr></table>
+      <div class="muted" style="margin-top:6px;">{% if row.game.demo %}Demo live{% if row.game.demo.date_text %} since {{ row.game.demo.date_text }}{% endif %} · {% endif %}Release: {{ row.game.release_text }}{% if row.unfollow_url %} · <a href="{{ row.unfollow_url }}">Unfollow</a>{% endif %}</div>
+    </td>
+  </tr></table>
+  {% if row.chart %}<img class="chart" src="{% if cid %}cid:{{ row.chart_id }}{% else %}{{ base }}{{ row.chart }}{% endif %}" alt="History for {{ row.game.name }}" width="600">
+  <div class="muted" style="margin-top:4px;">{{ row.chart_note }}</div>{% endif %}
+</div></div>
+{% endmacro %}

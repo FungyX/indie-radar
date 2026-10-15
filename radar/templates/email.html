@@ -1,0 +1,67 @@
+{% import "_macros.html" as m with context %}<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Indie Radar · {{ r.date_text }}</title>
+{% include "_styles.html" %}
+</head>
+<body>
+<div class="wrap"><div class="container">
+  {% if nav %}<div class="nav"><a href="{{ nav }}index.html">← Dashboard</a><a href="{{ nav }}archive.html">All reports</a></div>{% endif %}
+
+  <table width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td style="padding-bottom:6px;"><span style="font-size:20px;font-weight:bold;color:#fff;letter-spacing:1px;">INDIE<span style="color:#66c0f4;">RADAR</span></span></td>
+      <td align="right" class="muted">{{ r.date_text }}</td>
+    </tr>
+  </table>
+  <div style="background:#223448;background:linear-gradient(135deg,#2a475e 0%,#1b2838 70%);border-radius:4px;padding:26px 24px;margin-top:10px;">
+    <div class="label">Daily report · last 24 hours</div>
+    <p class="h1" style="margin-top:6px;">
+      {%- if r.cards or r.compact -%}{{ (r.cards|length) + (r.compact|length) }} post{{ '' if (r.cards|length) + (r.compact|length) == 1 else 's' }} worth your time today
+      {%- else -%}Quiet day: nothing passed the filter{%- endif -%}
+    </p>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-top:18px;">
+      <tr>
+        <td><div class="stat-num">{{ r.stats.scanned }}</div><div class="stat-lbl">New posts</div></td>
+        <td><div class="stat-num">{{ r.stats.mentions }}</div><div class="stat-lbl">Mention wishlists</div></td>
+        <td><div class="stat-num">{{ r.stats.shared }}</div><div class="stat-lbl">Shared stats</div></td>
+        <td><div class="stat-num">{{ r.stats.passed }}</div><div class="stat-lbl">Passed filter</div></td>
+      </tr>
+    </table>
+  </div>
+
+  {% if r.errors %}
+  <div class="card"><div class="card-pad" style="font-size:12px;color:#ffc82c;">
+    {% for e in r.errors %}⚠ {{ e }}<br>{% endfor %}
+  </div></div>
+  {% endif %}
+
+  {% if r.cards or r.compact %}
+  <div class="section-title">Top new from Reddit</div>
+  {% for item in r.cards %}{{ m.daily_card(item) }}{% endfor %}
+  {% for item in r.compact %}{{ m.compact_card(item) }}{% endfor %}
+  {% endif %}
+
+  {% if r.weekly is not none %}
+  <div class="section-title">Followed games <span style="color:#8f98a0;font-weight:normal;letter-spacing:1px;font-size:12px;">· weekly</span></div>
+  {% if r.weekly %}
+    {% for row in r.weekly %}{{ m.followed_card(row) }}{% endfor %}
+  {% else %}
+    <div class="card"><div class="card-pad muted">You don't follow any games yet. Use "+ Follow" on a daily card, or add Steam links to config/followed_games.txt.</div></div>
+  {% endif %}
+  {% endif %}
+
+  {% if r.dashboard_url and not nav %}
+  <div style="text-align:center;margin-top:22px;"><a class="btn ghost" href="{{ r.dashboard_url }}">Open dashboard</a></div>
+  {% endif %}
+
+  <div class="footer">
+    Indie Radar · sources: Reddit · Steam · Gamalytic · YouTube<br>
+    {% if public %}Wishlists here are estimated as Steam followers × {{ r.ratio }}.
+    {% else %}Wishlists come from Gamalytic when available, otherwise Steam followers × {{ r.ratio }}.{% endif %}
+  </div>
+</div></div>
+</body>
+</html>

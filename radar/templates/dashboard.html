@@ -1,0 +1,42 @@
+{% import "_macros.html" as m with context %}<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Indie Radar Dashboard</title>
+{% include "_styles.html" %}
+</head>
+<body>
+<div class="wrap"><div class="container">
+  <table width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td><span style="font-size:20px;font-weight:bold;color:#fff;letter-spacing:1px;">INDIE<span style="color:#66c0f4;">RADAR</span></span></td>
+      <td align="right" class="muted">Updated {{ updated }}</td>
+    </tr>
+  </table>
+
+  {% if page == 'index' %}
+  <div class="section-title">Latest reports</div>
+  <div class="card"><div class="card-pad">
+    {% for d in reports[:7] %}<div style="padding:6px 0;"><a href="reports/{{ d }}.html">{{ d }}</a>{% if loop.first %} <span class="pill">latest</span>{% endif %}</div>{% else %}<span class="muted">No reports yet.</span>{% endfor %}
+    {% if reports|length > 7 %}<div style="padding-top:8px;"><a href="archive.html">All {{ reports|length }} reports →</a></div>{% endif %}
+  </div></div>
+
+  <div class="section-title">Followed games <span style="color:#8f98a0;font-weight:normal;letter-spacing:1px;font-size:12px;">· updated daily</span></div>
+  {% for row in followed %}{{ m.followed_card(row) }}{% else %}
+  <div class="card"><div class="card-pad muted">No followed games yet.</div></div>
+  {% endfor %}
+  {% if edit_url %}<div style="text-align:center;margin-top:20px;"><a class="btn ghost" href="{{ edit_url }}">Edit followed games</a></div>{% endif %}
+
+  {% else %}
+  <div class="nav" style="margin-top:14px;"><a href="index.html">← Dashboard</a></div>
+  <div class="section-title">All reports</div>
+  <div class="card"><div class="card-pad">
+    {% for d in reports %}<div style="padding:6px 0;"><a href="reports/{{ d }}.html">{{ d }}</a></div>{% endfor %}
+  </div></div>
+  {% endif %}
+
+  <div class="footer">Indie Radar · sources: Reddit · Steam · Gamalytic · YouTube</div>
+</div></div>
+</body>
+</html>

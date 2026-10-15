@@ -1,0 +1,7 @@
+# Games shown in the weekly section (Mondays).
+# One game per line: a Steam app id or a full Steam store link.
+# Anything after # is a comment, use it for the game name.
+#
+# Examples:
+# 1030300  # Hollow Knight: Silksong
+# https://store.steampowered.com/app/1030300/Hollow_Knight_Silksong/

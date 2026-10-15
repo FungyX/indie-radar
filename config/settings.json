@@ -1,0 +1,21 @@
+{
+  "timezone": "Europe/Prague",
+  "daily_not_before": "07:30",
+  "weekly_day": "Monday",
+  "lookback_hours": 26,
+
+  "min_wishlists": 1000,
+  "first_week_wishlists": 500,
+  "first_week_days": 7,
+  "min_interest_score": 40,
+  "max_full_cards": 6,
+  "repeat_game_cooldown_days": 14,
+
+  "wishlists_per_follower": 10,
+  "track_reported_games_days": 60,
+
+  "claude_model": "sonnet",
+  "claude_batch_size": 12,
+
+  "site_url": ""
+}

@@ -1,0 +1,10 @@
+# Subreddits to scan every day (one per line, without "r/").
+# Lines starting with # are ignored.
+IndieDev
+gamedev
+indiegames
+IndieGaming
+gamemarketing
+SoloDevelopment
+godot
+Unity3D
