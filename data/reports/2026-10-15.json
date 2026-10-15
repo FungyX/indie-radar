@@ -3,7 +3,7 @@
  "date_text": "Thursday, 15 Oct 2026",
  "stats": {
   "scanned": 724,
-  "mentions": 71,
+  "mentions": 69,
   "shared": 5,
   "passed": 1
  },
@@ -20,7 +20,7 @@
     "steam_appids": [
      5362750
     ],
-    "age": "5h ago"
+    "age": "6h ago"
    },
    "info": {
     "id": "t3_1x6jakn",
@@ -34,45 +34,45 @@
      {
       "name": "Reddit posts",
       "wishlists": 200,
-      "note": "One r/IndieGaming post on day one brought ~200 wishlists"
+      "note": "One r/IndieGaming post on day one brought about 200 wishlists"
      },
      {
       "name": "Streamers",
       "wishlists": null,
-      "note": "Indie Game Joe posted unprompted; that day beat launch day"
+      "note": "Indie Game Joe posted unprompted; that day beat the first day"
      },
      {
       "name": "RedNote",
       "wishlists": null,
-      "note": "Chinese video: 25k views, 1000 likes, 100 followers; account restricted"
+      "note": "Chinese video: 25k views, 1000 likes, ~100 followers; account restricted"
      }
     ],
-    "demo": "Demo planned for later this year or early next",
-    "interest_score": 82,
-    "summary": "Solo dev reached ~870 wishlists in the Steam page's first week; one Reddit post gave ~200, an unprompted YouTuber feature boosted more.",
+    "demo": "Demo planned for later this year or early next year",
+    "interest_score": 78,
+    "summary": "Solo dev reached about 870 wishlists in the first week of the Steam page, with ~200 from one Reddit post and a viral RedNote video.",
     "_appid": 5362750
    },
    "appid": 5362750,
-   "score": 82,
+   "score": 78,
    "also_in": [],
    "bars": [
     {
      "name": "Reddit posts",
      "wishlists": 200,
      "pct": 100,
-     "note": "One r/IndieGaming post on day one brought ~200 wishlists"
+     "note": "One r/IndieGaming post on day one brought about 200 wishlists"
     },
     {
      "name": "Streamers",
      "wishlists": null,
      "pct": null,
-     "note": "Indie Game Joe posted unprompted; that day beat launch day"
+     "note": "Indie Game Joe posted unprompted; that day beat the first day"
     },
     {
      "name": "RedNote",
      "wishlists": null,
      "pct": null,
-     "note": "Chinese video: 25k views, 1000 likes, 100 followers; account restricted"
+     "note": "Chinese video: 25k views, 1000 likes, ~100 followers; account restricted"
     }
    ],
    "game": {
