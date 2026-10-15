@@ -56,16 +56,24 @@ def age_text(published: datetime, now: datetime) -> str:
 
 def collect_posts(state: dict, since: datetime, errors: list[str]) -> tuple[list[dict], int]:
     subs = config.subreddits()
-    posts, ok = [], 0
-    for sub in subs:
-        try:
-            fetched = reddit.fetch_subreddit(sub)
-            ok += 1
-        except Exception as exc:
-            errors.append(f"Could not read r/{sub}: {exc}")
-            continue
-        posts += [p for p in fetched if p["published"] >= since and p["id"] not in state["seen_posts"]]
-        time.sleep(8)  # anonymous RSS allows only a few requests per minute
+    posts, ok, failed = [], 0, []
+    # Subreddits Reddit refused (usually "too many requests") get one more try after a pause.
+    for attempt, todo in enumerate((subs, failed)):
+        if attempt == 1 and todo:
+            log(f"Retrying {len(todo)} subreddit(s) after a pause")
+            time.sleep(90)
+        for sub in list(todo):
+            try:
+                fetched = reddit.fetch_subreddit(sub)
+                ok += 1
+            except Exception as exc:
+                if attempt == 0:
+                    failed.append(sub)
+                else:
+                    errors.append(f"Could not read r/{sub}: {exc}")
+                continue
+            posts += [p for p in fetched if p["published"] >= since and p["id"] not in state["seen_posts"]]
+            time.sleep(10)  # anonymous RSS allows only a few requests per minute
     if subs and not ok:
         errors.append("Reddit refused every request. It may be blocking GitHub's servers, see README.")
     return posts, ok
