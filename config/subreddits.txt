@@ -12,5 +12,5 @@ incremental_games
 AutoBattler
 gameDevMarketing
 deckbuildingroguelike
-IndieGameWishlists
+IndieGameWishlist
 SoloDev
