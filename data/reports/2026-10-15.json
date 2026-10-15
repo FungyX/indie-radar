@@ -4,8 +4,8 @@
  "stats": {
   "scanned": 606,
   "mentions": 52,
-  "shared": 6,
-  "passed": 2
+  "shared": 4,
+  "passed": 1
  },
  "cards": [
   {
@@ -79,61 +79,20 @@
      "seconds": 53.4,
      "length": "0:53"
     },
-    "youtube": {
-     "best": {
-      "id": "vd7oqgnf4ac",
-      "url": "https://www.youtube.com/watch?v=vd7oqgnf4ac",
-      "title": "LITTERMATES trailer",
-      "channel": "Alamo Drafthouse",
-      "views": 2637,
-      "length": "1:14",
-      "seconds": 74,
-      "published": "4w ago"
-     },
-     "count": 7,
-     "total_views": 4051,
-     "length": "1:14"
-    }
+    "youtube": null
    },
    "follow_url": "https://github.com/FungyX/indie-radar/issues/new?title=follow%204735880%20Littermates&body=Just%20press%20Submit.%20A%20workflow%20updates%20config/followed_games.txt%20and%20closes%20this%20issue."
-  },
-  {
-   "post": {
-    "id": "t3_1x6l31n",
-    "subreddit": "SoloDevelopment",
-    "title": "With wishlists, just like with a YouTube channel, you end up raising your own expectations and setting the bar too high",
-    "author": "Suvitruf",
-    "url": "https://www.reddit.com/r/SoloDevelopment/comments/1x6l31n/with_wishlists_just_like_with_a_youtube_channel/",
-    "published": "2026-10-15 13:04:20+00:00",
-    "text": "You see other people hitting 100K wishlists or 100K subscribers on YouTube.\n But rationally, you know that 1,000 subscribers or wishlists is already a hell of a lot!\n Sure, some are friends/loyal supporters, but that's still hundreds of people who have a real interest in what you're doing!",
-    "steam_appids": [],
-    "age": "3h ago"
-   },
-   "info": {
-    "id": "t3_1x6l31n",
-    "shares_stats": true,
-    "game_name": null,
-    "wishlists": 100000,
-    "period_days": null,
-    "period_text": null,
-    "has_steam_page": null,
-    "strategies": [],
-    "demo": null,
-    "interest_score": 50,
-    "summary": "With wishlists, just like with a YouTube channel, you end up raising your own expectations and setting the bar too high",
-    "_appid": null
-   },
-   "appid": null,
-   "score": 50,
-   "also_in": [],
-   "bars": [],
-   "game": null,
-   "follow_url": null
   }
  ],
  "compact": [],
  "weekly": null,
- "errors": [],
+ "errors": [
+  "Claude failed on a batch (claude exited 1: :0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"safety_stops\":0,\"is_error\":true,\"num_turns\":1,\"subtype\":\"success\",\"api_error_status\":401,\"api_error_origin\":\"first_party\",\"result\":\"Not logged in \u00b7 Please run /login\",\"type\":\"result\",\"duration_ms\":2130,\"uuid\":\"66b867b8-33d4-4c8c-b02b-82c8a01ea083\",\"queued_turn_count\":0,\"result_index\":0}); using the regex fallback for it",
+  "Claude failed on a batch (claude exited 1: :0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"safety_stops\":0,\"is_error\":true,\"num_turns\":1,\"subtype\":\"success\",\"api_error_status\":401,\"api_error_origin\":\"first_party\",\"result\":\"Not logged in \u00b7 Please run /login\",\"type\":\"result\",\"duration_ms\":2020,\"uuid\":\"0d4be45f-4ddf-48c7-80ef-0cb98a5baab5\",\"queued_turn_count\":0,\"result_index\":0}); using the regex fallback for it",
+  "Claude failed on a batch (claude exited 1: :0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"safety_stops\":0,\"is_error\":true,\"num_turns\":1,\"subtype\":\"success\",\"api_error_status\":401,\"api_error_origin\":\"first_party\",\"result\":\"Not logged in \u00b7 Please run /login\",\"type\":\"result\",\"duration_ms\":2107,\"uuid\":\"aca72293-37f3-4e38-b3a4-67747e014aef\",\"queued_turn_count\":0,\"result_index\":0}); using the regex fallback for it",
+  "Claude failed on a batch (claude exited 1: :0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"safety_stops\":0,\"is_error\":true,\"num_turns\":1,\"subtype\":\"success\",\"api_error_status\":401,\"api_error_origin\":\"first_party\",\"result\":\"Not logged in \u00b7 Please run /login\",\"type\":\"result\",\"duration_ms\":2126,\"uuid\":\"30c444ab-bbcf-4ae1-b694-20f07cd5d8ad\",\"queued_turn_count\":0,\"result_index\":0}); using the regex fallback for it",
+  "Claude failed on a batch (claude exited 1: :0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"safety_stops\":0,\"is_error\":true,\"num_turns\":1,\"subtype\":\"success\",\"api_error_status\":401,\"api_error_origin\":\"first_party\",\"result\":\"Not logged in \u00b7 Please run /login\",\"type\":\"result\",\"duration_ms\":2032,\"uuid\":\"6499a768-c027-44b0-9ade-9d9b9860fca2\",\"queued_turn_count\":0,\"result_index\":0}); using the regex fallback for it"
+ ],
  "ratio": 10,
  "dashboard_url": "https://FungyX.github.io/indie-radar/"
 }
