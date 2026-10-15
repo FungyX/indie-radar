@@ -8,3 +8,9 @@ gamemarketing
 SoloDevelopment
 godot
 Unity3D
+incremental_games
+AutoBattler
+gameDevMarketing
+deckbuildingroguelike
+IndieGameWishlists
+SoloDev
