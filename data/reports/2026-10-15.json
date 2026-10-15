@@ -2,118 +2,15 @@
  "date": "2026-10-15",
  "date_text": "Thursday, 15 Oct 2026",
  "stats": {
-  "scanned": 724,
-  "mentions": 69,
-  "shared": 5,
-  "passed": 1
+  "scanned": 799,
+  "mentions": 106,
+  "shared": 13,
+  "passed": 0
  },
- "cards": [
-  {
-   "post": {
-    "id": "t3_1x6jakn",
-    "subreddit": "IndieDev",
-    "title": "Every death in my game becomes an Echo that replays your last life.",
-    "author": "Tojgliass",
-    "url": "https://www.reddit.com/r/IndieDev/comments/1x6jakn/every_death_in_my_game_becomes_an_echo_that/",
-    "published": "2026-10-15 11:36:32+00:00",
-    "text": "Hi r/IndieDev! I'm a solo dev working on ECHO SEQUENCE, a top-down roguelite shooter where every death becomes an Echo: a ghost of your past life that replays exactly what you did, alongside your next attempt. The levels are built around it. In the video, two plates have to be held at the same time to open the exit, so my past lives hold them while I leave through the Exit.\n The video is the same level twice: Life 1 on my own, and Life 5 with four of my past lives fighting next to me.\n The Steam Page launch week, in numbers:\n - My Steam page went live last week. A single r/IndieGaming post on day one brought around 200 wishlists, Definitely more than I expected!\n - Indie Game Joe found my game and posted about it unprompted and that day gave me more wishlists than my first day!\n - Posting in Chinese on RedNote brought a surprisingly warm response as well. It also got my account restricted though for encouraging people to check out the game on Steam, so read the rules before you try it. :P I am in the process of trying to unlock it because I got more than 25 000 views, 1000 likes and about 100 followers in a couple of hours - from 1 short video! \n - I'm at ~870 now, aiming for 1000 by next week.\n What I changed since, mostly from player feedback:\n - Volumetric blood that stays on the ground for the rest of the life\n - Fire that trails behind burning enemies and leaves burning ground\n - New animations for the player and enemies\n - A full sound pass: weapons, enemy voices, pickups, objectives, per-level ambience, and a build-up and burst when a loop ends\n The hardest part technically: each Echo is a recording of the player only. Enemies, props and projectiles are re-simulated every life, so the whole simulation has to be deterministic, or an Echo misses a zombie it killed the first time. Seeded randomness per enemy, a fixed simulation tick, sorted physics queries. \n Demo planned for later this year, or early next. Feedback very welcome. <3",
-    "steam_appids": [
-     5362750
-    ],
-    "age": "6h ago"
-   },
-   "info": {
-    "id": "t3_1x6jakn",
-    "shares_stats": true,
-    "game_name": "ECHO SEQUENCE",
-    "wishlists": 870,
-    "period_days": 7,
-    "period_text": "about 1 week",
-    "has_steam_page": true,
-    "strategies": [
-     {
-      "name": "Reddit posts",
-      "wishlists": 200,
-      "note": "One r/IndieGaming post on day one brought about 200 wishlists"
-     },
-     {
-      "name": "Streamers",
-      "wishlists": null,
-      "note": "Indie Game Joe posted unprompted; that day beat the first day"
-     },
-     {
-      "name": "RedNote",
-      "wishlists": null,
-      "note": "Chinese video: 25k views, 1000 likes, ~100 followers; account restricted"
-     }
-    ],
-    "demo": "Demo planned for later this year or early next year",
-    "interest_score": 78,
-    "summary": "Solo dev reached about 870 wishlists in the first week of the Steam page, with ~200 from one Reddit post and a viral RedNote video.",
-    "_appid": 5362750
-   },
-   "appid": 5362750,
-   "score": 78,
-   "also_in": [],
-   "bars": [
-    {
-     "name": "Reddit posts",
-     "wishlists": 200,
-     "pct": 100,
-     "note": "One r/IndieGaming post on day one brought about 200 wishlists"
-    },
-    {
-     "name": "Streamers",
-     "wishlists": null,
-     "pct": null,
-     "note": "Indie Game Joe posted unprompted; that day beat the first day"
-    },
-    {
-     "name": "RedNote",
-     "wishlists": null,
-     "pct": null,
-     "note": "Chinese video: 25k views, 1000 likes, ~100 followers; account restricted"
-    }
-   ],
-   "game": {
-    "appid": 5362750,
-    "name": "Echo Sequence",
-    "url": "https://store.steampowered.com/app/5362750/",
-    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5362750/ae798b3248a8518ccf053e055f7d4c060f8d3b17/header.jpg?t=1791885202",
-    "developers": [
-     "Tamas Szabadi"
-    ],
-    "short_description": "An isometric, top-down roguelite shooter where your deaths are your squad. Die, and your last life fights on as an Echo, repeating every move and every shot. Die again and there are two. Plan across loops, split the work between your past selves, and clear each level together.",
-    "coming_soon": true,
-    "release_text": "2027",
-    "genres": [
-     "Action",
-     "Indie"
-    ],
-    "gamalytic_url": "https://gamalytic.com/game/5362750",
-    "followers": null,
-    "est_wishlists": null,
-    "tags": [
-     "Action",
-     "Indie"
-    ],
-    "demo": null,
-    "trailer": {
-     "name": "Announcement Trailer",
-     "count": 1,
-     "seconds": 63.3,
-     "length": "1:03"
-    },
-    "youtube": null
-   },
-   "follow_url": "https://github.com/FungyX/indie-radar/issues/new?title=follow%205362750%20Echo%20Sequence&body=Just%20press%20Submit.%20A%20workflow%20updates%20config/followed_games.txt%20and%20closes%20this%20issue."
-  }
- ],
+ "cards": [],
  "compact": [],
  "weekly": null,
- "errors": [
-  "Could not read r/IndieGameWishlists: 429 for https://www.reddit.com/r/IndieGameWishlists/new/.rss"
- ],
+ "errors": [],
  "ratio": 10,
  "dashboard_url": "https://FungyX.github.io/indie-radar/"
 }
