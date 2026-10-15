@@ -2,9 +2,9 @@
  "date": "2026-10-15",
  "date_text": "Thursday, 15 Oct 2026",
  "stats": {
-  "scanned": 605,
-  "mentions": 52,
-  "shared": 3,
+  "scanned": 724,
+  "mentions": 71,
+  "shared": 5,
   "passed": 1
  },
  "cards": [
@@ -28,51 +28,51 @@
     "game_name": "ECHO SEQUENCE",
     "wishlists": 870,
     "period_days": 7,
-    "period_text": "about 1 week since Steam page launch",
+    "period_text": "about 1 week",
     "has_steam_page": true,
     "strategies": [
      {
       "name": "Reddit posts",
       "wishlists": 200,
-      "note": "One r/IndieGaming post on day one brought around 200 wishlists"
+      "note": "One r/IndieGaming post on day one brought ~200 wishlists"
      },
      {
       "name": "Streamers",
       "wishlists": null,
-      "note": "Indie Game Joe posted unprompted; that day beat first-day wishlists"
+      "note": "Indie Game Joe posted unprompted; that day beat launch day"
      },
      {
       "name": "RedNote",
       "wishlists": null,
-      "note": "Chinese video got 25k views, 1000 likes, 100 followers; account restricted"
+      "note": "Chinese video: 25k views, 1000 likes, 100 followers; account restricted"
      }
     ],
-    "demo": "Demo planned for later this year or early next; none yet.",
-    "interest_score": 72,
-    "summary": "Solo dev reached about 870 wishlists in the first week; one Reddit post gave ~200, and a RedNote video got 25k views.",
+    "demo": "Demo planned for later this year or early next",
+    "interest_score": 82,
+    "summary": "Solo dev reached ~870 wishlists in the Steam page's first week; one Reddit post gave ~200, an unprompted YouTuber feature boosted more.",
     "_appid": 5362750
    },
    "appid": 5362750,
-   "score": 72,
+   "score": 82,
    "also_in": [],
    "bars": [
     {
      "name": "Reddit posts",
      "wishlists": 200,
      "pct": 100,
-     "note": "One r/IndieGaming post on day one brought around 200 wishlists"
+     "note": "One r/IndieGaming post on day one brought ~200 wishlists"
     },
     {
      "name": "Streamers",
      "wishlists": null,
      "pct": null,
-     "note": "Indie Game Joe posted unprompted; that day beat first-day wishlists"
+     "note": "Indie Game Joe posted unprompted; that day beat launch day"
     },
     {
      "name": "RedNote",
      "wishlists": null,
      "pct": null,
-     "note": "Chinese video got 25k views, 1000 likes, 100 followers; account restricted"
+     "note": "Chinese video: 25k views, 1000 likes, 100 followers; account restricted"
     }
    ],
    "game": {
@@ -111,7 +111,9 @@
  ],
  "compact": [],
  "weekly": null,
- "errors": [],
+ "errors": [
+  "Could not read r/IndieGameWishlists: 429 for https://www.reddit.com/r/IndieGameWishlists/new/.rss"
+ ],
  "ratio": 10,
  "dashboard_url": "https://FungyX.github.io/indie-radar/"
 }
