@@ -13,11 +13,19 @@ PROMPT = """You review Reddit posts from game-dev subreddits for a daily report 
 For EACH post below, decide whether an indie developer is sharing real numbers about their OWN game
 (wishlists above all; also followers, sales, demo results, festival results, what marketing worked).
 
+Be strict. "shares_stats" is FALSE when:
+- the numbers are about other people's games, the industry, or hypotheticals
+  (e.g. "you see others hitting 100K wishlists", "what if I had 10k wishlists?", "is 2k wishlists good?")
+- the post is a question, advice, rant or opinion without the author's own concrete results
+- the game can't be identified: no game name in the post and no Steam link
+- the wishlist number is a goal or a target, not the current count
+Only the author's own, current, stated wishlist count goes in "wishlists".
+
 Return ONLY a JSON array, one object per post, no prose, with exactly these keys:
 - "id": the post id, copied exactly
-- "shares_stats": true only if the author shares concrete numbers about their own game
-- "game_name": the game's title or null
-- "wishlists": total wishlists the dev claims right now as an integer, or null (convert "4.2k" to 4200)
+- "shares_stats": true only if the author shares concrete current numbers about their own, identifiable game
+- "game_name": the game's title as written in the post or its Steam link, or null. Never use the post title as a game name.
+- "wishlists": total wishlists the author says THEIR game has right now, as an integer, or null (convert "4.2k" to 4200)
 - "period_days": over how many days those wishlists were gathered, counting from when the Steam page went up, as an integer, or null if not stated
 - "period_text": short human phrase for that period ("6 weeks", "since March") or null
 - "has_steam_page": true/false/null
@@ -69,7 +77,14 @@ def _ask_claude(posts: list[dict], model: str) -> list[dict]:
     return _extract_json_array(envelope.get("result", ""))
 
 
+FIRST_PERSON_RE = re.compile(r"\b(I|I'm|I've|we|we're|we've|my|our)\b", re.IGNORECASE)
+
+
 def _fallback(post: dict) -> dict:
+    """Crude stand-in when Claude can't run. Only trusts posts that link a Steam page and speak
+    in first person, so general discussion about other people's numbers is skipped."""
+    if not post["steam_appids"] or not FIRST_PERSON_RE.search(post["title"] + "\n" + post["text"]):
+        return {"id": post["id"], "shares_stats": False, "wishlists": None, "interest_score": 0}
     best = None
     for num, k, *_ in WISHLIST_RE.findall(post["title"] + "\n" + post["text"]):
         try:

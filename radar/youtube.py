@@ -68,16 +68,50 @@ def search(query: str) -> list[dict]:
     return videos
 
 
-def find_trailers(game_name: str) -> dict | None:
-    """Trailer videos whose title names the game. Returns the most viewed one plus totals."""
+DESCRIPTION_RE = re.compile(r'"shortDescription":"((?:[^"\\]|\\.)*)"')
+GAME_WORDS = ("wishlist", "demo", "early access", "gameplay", "game", "roguelike", "play ")
+PLATFORM_WORDS = ("steam", "nintendo switch", "ps5", "ps4", "playstation", "xbox", "game pass", "epic games store")
+GAMING_CHANNELS = ("nintendo", "playstation", "xbox", "ign", "gamespot", "gametrailers", "game trailers",
+                   "gaming", "games", "indie")
+
+
+def _description(video_id: str) -> str:
     try:
-        videos = search(f"{game_name} trailer")
+        r = get("https://www.youtube.com/watch", params={"v": video_id},
+                headers={"Cookie": "SOCS=CAI; CONSENT=YES+1"})
+    except Exception:
+        return ""
+    m = DESCRIPTION_RE.search(r.text)
+    return json.loads(f'"{m.group(1)}"') if m else ""
+
+
+def _belongs_to_game(video: dict, appid: int, studios: list[str]) -> bool:
+    """A same-named movie or song must not count. Accept a video only when its channel is the
+    game's developer/publisher, or its description points at Steam / clearly talks about a game."""
+    channel = normalize(video["channel"])
+    for studio in studios:
+        s = normalize(studio)
+        if len(s) >= 3 and channel and (s in channel or channel in s):
+            return True
+    if any(re.search(rf"\b{w}\b", video["channel"].lower()) for w in GAMING_CHANNELS):
+        return True
+    desc = _description(video["id"]).lower()
+    if f"store.steampowered.com/app/{appid}" in desc:
+        return True
+    return any(p in desc for p in PLATFORM_WORDS) and any(w in desc for w in GAME_WORDS)
+
+
+def find_trailers(game_name: str, appid: int, studios: list[str]) -> dict | None:
+    """Trailers of this game on YouTube (verified, see _belongs_to_game). Most viewed + totals."""
+    try:
+        videos = search(f"{game_name} game trailer")
     except Exception:
         return None
     want = normalize(game_name)
     if not want:
         return None
-    matches = [v for v in videos if want in normalize(v["title"]) and "trailer" in v["title"].lower()]
+    named = [v for v in videos if want in normalize(v["title"]) and "trailer" in v["title"].lower()]
+    matches = [v for v in named[:6] if _belongs_to_game(v, appid, studios)]
     if not matches:
         return None
     best = max(matches, key=lambda v: v["views"] or 0)

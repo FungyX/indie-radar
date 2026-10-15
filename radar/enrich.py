@@ -36,7 +36,8 @@ def game_profile(appid: int, settings: dict, today: date, with_youtube: bool = T
     if g["demo"] and g["demo"]["date"]:
         g["demo"]["days_live"] = (today - g["demo"]["date"]).days
     g["trailer"] = steam.trailer_info(details)
-    g["youtube"] = youtube.find_trailers(name) if with_youtube else None
+    studios = (details.get("developers") or []) + (details.get("publishers") or [])
+    g["youtube"] = youtube.find_trailers(name, appid, studios) if with_youtube else None
     return g
 
 

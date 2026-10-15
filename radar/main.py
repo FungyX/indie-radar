@@ -126,7 +126,12 @@ def reddit_section(state, settings, today, now_utc, errors):
     groups: dict[str, list[dict]] = {}
     for p in passing:
         info = infos[p["id"]]
+        if info.get("game_name") and steam.normalize(info["game_name"]) == steam.normalize(p["title"]):
+            info["game_name"] = None  # a post title isn't a game name
         info["_appid"] = resolve_appid(p, info)
+        if not info["_appid"] and not info.get("game_name"):
+            log(f"Skipping '{p['title'][:60]}': no identifiable game")
+            continue
         groups.setdefault(group_key(p, info), []).append(p)
 
     cooldown = (today - timedelta(days=settings["repeat_game_cooldown_days"])).isoformat()
