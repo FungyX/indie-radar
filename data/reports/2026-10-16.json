@@ -1,0 +1,138 @@
+{
+ "date": "2026-10-16",
+ "date_text": "Friday, 16 Oct 2026",
+ "stats": {
+  "scanned": 541,
+  "mentions": 41,
+  "shared": 8,
+  "passed": 1
+ },
+ "cards": [
+  {
+   "post": {
+    "id": "t3_1x707dr",
+    "subreddit": "IndieDev",
+    "title": "Numbers from my first 3-month Steam game (700 wishlists, $2,123 gross) and why a small genre event beat Next Fest by 3x",
+    "author": "mrnovembeer",
+    "url": "https://www.reddit.com/r/IndieDev/comments/1x707dr/numbers_from_my_first_3month_steam_game_700/",
+    "published": "2026-10-15 22:58:16+00:00",
+    "text": "I shipped my first commercial game called Immunica a few months ago after 3 months of solo dev. It's a small Nodebuster style incremental game.\n I did almost zero marketing during development (literally 3 shorts and a few tweets) and was sitting at 82 wishlists a month before Next Fest.\n Here is how the numbers ended up looking:\n Tiny Roguelikes event: +474 wishlists in 2 weeks\n Steam Next Fest: +160 wishlists\n Wishlists at launch: ~700\n Sales: 147 in the first 3 days, 234 first week, 895 total so far\n Revenue: $2,123 gross (~$1,100 net after Steam cut, taxes, refunds)\n Outstanding Wishlist: 1,081\n Biggest surprise for me was Next Fest vs smaller festivals. If you go into Next Fest with ~500 wishlists, you just get buried. Niche genre events convert way better when you're small.\n Also a random tip: manually check your Polish pricing on Steam. Steam's default PLN conversion is super high right now. There's a PolishOurPrices movement in Poland and they pointed it out to me on Twitter during launch week, I lowered it, and some posts about it just went viral there. Poland ended up being my #1 market (201 copies sold).\n Anyway, I teamed up with an artist friend for my next incremental game Feed The Pond so it doesn't have my programmer art this time, and we put the Steam page up early instead of waiting until the last minute.\n Made a quick 5 min video breaking down the launch graphs and showing the new game if anyone wants to check it out: Video\n Feed The Pond on Steam: Steam",
+    "steam_appids": [
+     5347210
+    ],
+    "age": "11h ago"
+   },
+   "info": {
+    "id": "t3_1x707dr",
+    "shares_stats": true,
+    "game_name": "Immunica",
+    "wishlists": 1081,
+    "period_days": null,
+    "period_text": "3 months of dev, launched a few months ago",
+    "has_steam_page": true,
+    "strategies": [
+     {
+      "name": "Tiny Roguelikes event",
+      "wishlists": 474,
+      "note": "Small genre event gave +474 wishlists in 2 weeks"
+     },
+     {
+      "name": "Steam Next Fest",
+      "wishlists": 160,
+      "note": "Buried when entering with only ~500 wishlists"
+     },
+     {
+      "name": "Price localization",
+      "wishlists": null,
+      "note": "Lowered Polish price; Poland became #1 market with 201 copies"
+     }
+    ],
+    "demo": null,
+    "interest_score": 92,
+    "summary": "Immunica launched with ~700 wishlists (1,081 outstanding), 895 sales and $2,123 gross; a small genre event gave +474 versus +160 from Next Fest.",
+    "_appid": 5347210
+   },
+   "appid": 5347210,
+   "score": 92,
+   "also_in": [
+    "r/SoloDevelopment",
+    "r/gamedev"
+   ],
+   "bars": [
+    {
+     "name": "Tiny Roguelikes event",
+     "wishlists": 474,
+     "pct": 100,
+     "note": "Small genre event gave +474 wishlists in 2 weeks"
+    },
+    {
+     "name": "Steam Next Fest",
+     "wishlists": 160,
+     "pct": 34,
+     "note": "Buried when entering with only ~500 wishlists"
+    },
+    {
+     "name": "Price localization",
+     "wishlists": null,
+     "pct": null,
+     "note": "Lowered Polish price; Poland became #1 market with 201 copies"
+    }
+   ],
+   "game": {
+    "appid": 5347210,
+    "name": "FEED THE POND",
+    "url": "https://store.steampowered.com/app/5347210/",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5347210/37b511248b04a3929092937b389c0662a3c9c755/header.jpg?t=1791321002",
+    "developers": [
+     "eranboi"
+    ],
+    "short_description": "Hire frogs, brew potions and feed a Wart that is never, ever full. Turn a quiet little pond into a bubbling swamp machine in this cozy incremental game.",
+    "coming_soon": true,
+    "release_text": "Coming soon",
+    "genres": [
+     "Casual",
+     "Indie",
+     "Simulation",
+     "Strategy"
+    ],
+    "gamalytic_url": "https://gamalytic.com/game/5347210",
+    "followers": 14,
+    "est_wishlists": 140,
+    "tags": [
+     "Casual",
+     "Indie",
+     "Simulation",
+     "Strategy"
+    ],
+    "demo": null,
+    "trailer": {
+     "name": "Announcement Trailer",
+     "count": 1,
+     "seconds": 41.7,
+     "length": "0:42"
+    },
+    "youtube": {
+     "best": {
+      "id": "j86Wir5ohXc",
+      "url": "https://www.youtube.com/watch?v=j86Wir5ohXc",
+      "title": "FEED THE POND | Official Trailer | Cozy Frog Incremental Game | Wishlist on Steam",
+      "channel": "eranboi",
+      "views": 306,
+      "length": "0:42",
+      "seconds": 42,
+      "published": "12d ago"
+     },
+     "count": 1,
+     "total_views": 306,
+     "length": "0:42"
+    }
+   },
+   "follow_url": "https://github.com/FungyX/indie-radar/issues/new?title=follow%205347210%20FEED%20THE%20POND&body=Just%20press%20Submit.%20A%20workflow%20updates%20config/followed_games.txt%20and%20closes%20this%20issue."
+  }
+ ],
+ "compact": [],
+ "weekly": null,
+ "errors": [],
+ "ratio": 10,
+ "dashboard_url": "https://FungyX.github.io/indie-radar/"
+}
